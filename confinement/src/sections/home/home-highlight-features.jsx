@@ -5,7 +5,6 @@ import { m, useSpring, useScroll, useTransform, useMotionValueEvent } from 'fram
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import SvgIcon from '@mui/material/SvgIcon';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { styled, useTheme } from '@mui/material/styles';
@@ -13,7 +12,6 @@ import { styled, useTheme } from '@mui/material/styles';
 import { CONFIG } from 'src/global-config';
 import { primaryColorPresets } from 'src/theme/with-settings';
 
-import { Iconify } from 'src/components/iconify';
 import { varFade, MotionViewport } from 'src/components/animate';
 
 import { SectionTitle } from './components/section-title';
@@ -23,9 +21,6 @@ import { FloatLine, FloatPlusIcon } from './components/svg-elements';
 
 const renderLines = () => (
   <>
-    <FloatPlusIcon sx={{ top: 72, left: 72 }} />
-    <FloatLine sx={{ top: 80, left: 0 }} />
-    <FloatLine vertical sx={{ top: 0, left: 80 }} />
   </>
 );
 
@@ -53,39 +48,15 @@ export function HomeHighlightFeatures({ sx, ...other }) {
             spacing={5}
             sx={[
               () => ({
-                textAlign: { xs: 'center', md: 'left' },
-                alignItems: { xs: 'center', md: 'flex-start' },
+                textAlign: { xs: 'center', md: 'center' },
+                alignItems: { xs: 'center', md: 'center' },
               }),
             ]}
           >
-            <SectionTitle caption="App Features" title="Highlight" txtGradient="features" />
-
-            <SvgIcon
-              component={m.svg}
-              variants={varFade('inDown', { distance: 24 })}
-              sx={[
-                () => ({
-                  width: 28,
-                  height: 28,
-                  color: 'grey.500',
-                }),
-              ]}
-            >
-              <path
-                d="M13.9999 6.75956L7.74031 0.5H20.2594L13.9999 6.75956Z"
-                fill="currentColor"
-                opacity={0.12}
-              />
-              <path
-                d="M13.9998 23.8264L2.14021 11.9668H25.8593L13.9998 23.8264Z"
-                fill="currentColor"
-                opacity={0.24}
-              />
-            </SvgIcon>
+            <SectionTitle title="Dishes for Confinement Mothers" />
           </Stack>
         </Container>
       </MotionViewport>
-
       <ScrollableContent containerRoot={containerRoot} />
     </Box>
   );
@@ -95,29 +66,53 @@ export function HomeHighlightFeatures({ sx, ...other }) {
 
 const ITEMS = [
   {
-    title: 'Dark mode',
-    subtitle: 'A dark theme that feels easier on the eyes.',
-    icon: 'solar:cloudy-moon-bold-duotone',
-    imgUrl: [`${CONFIG.assetsDir}/assets/images/home/highlight-darkmode.webp`],
+    title: `Pig's Trotter with Ginger, Vinegar and Egg (猪脚醋)`,
+    subtitle: 'Pig trotters are often consumed',
+    imgUrl: [`${CONFIG.assetsDir}/menu/homedish/Pig_Trotters_with_Vinger_Egg_480x480.webp`],
   },
   {
-    title: 'Color presets',
-    subtitle: 'Express your own style with just one click.',
-    icon: 'solar:pallete-2-bold-duotone',
+    title: 'Milk Boosting Fish and Papaya Soup (木瓜鱼汤)',
+    subtitle: 'Express your Papaya fish soup is a traditional dish highly recommended for confinement mothers. style with just one click.',
     imgUrl: [
-      `${CONFIG.assetsDir}/assets/images/home/highlight-presets-1.webp`,
-      `${CONFIG.assetsDir}/assets/images/home/highlight-presets-2.webp`,
-      `${CONFIG.assetsDir}/assets/images/home/highlight-presets-3.webp`,
-      `${CONFIG.assetsDir}/assets/images/home/highlight-presets-4.webp`,
-      `${CONFIG.assetsDir}/assets/images/home/highlight-presets-5.webp`,
+      `${CONFIG.assetsDir}/menu/homedish/Papaya_Fish_soup_480x480.webp`,
     ],
   },
   {
-    title: 'Right-to-left',
-    subtitle: 'Support languages such as Arabic, Persian, and Hebrew.',
-    icon: 'solar:align-right-bold-duotone',
-    imgUrl: [`${CONFIG.assetsDir}/assets/images/home/highlight-rtl.webp`],
+    title: 'Right-to-HK Style Steam Golden Snapper in Superior Soya Sauce (港式蒸鱼片)',
+    subtitle: 'Support languages such as During this important month-long confinement period, it is vital to eat well to regain your strength., Persian, and Hebrew.',
+    imgUrl: [`${CONFIG.assetsDir}/menu/homedish/11_1_480x480.webp`],
   },
+  {
+    title: 'Mind Boosting Walnut Black Bean Pork Ribs Soup (黑豆核桃排骨汤)',
+    subtitle: 'Black Bean Pork Ribs, it is often regarded as a healthy and tasty tonic for the body, and it contains high nutritional values.',
+    imgUrl: [`${CONFIG.assetsDir}/menu/homedish/Mind_Boosting_Walnut_Black_Bean_Pork_Ribs_Soup_480x480.webp`],
+  },
+  {
+    title: 'Baked Herbal Chicken (烤药材鸡)',
+    subtitle: 'By using Herbal, it will help to boost energy, aid in stomach discomfort and regulate blood.',
+    imgUrl: [`${CONFIG.assetsDir}/menu/homedish/Baked_Herbal_Chicken_480x480.webp`],
+  },
+  {
+    title: 'Lemongrass Chicken Soup (除风香茅鸡汤)',
+    subtitle: 'Lemongrass is a herb that contains vitamins, mineral, electrolytes, and other chemicals that acts as antioxidants are abundant in all parts of lemongrass.',
+    imgUrl: [`${CONFIG.assetsDir}/menu/homedish/Lemongrass_Chicken_Soup_b0ae4e7a-b06c-4440-aaec-b9c6d4265a69_480x480.webp`],
+  },
+  {
+    title: 'Grilled Salmon With Apple Mirin Sauce (烤三文鱼与萍果味醂)',
+    subtitle: 'This dish is carbohydrate free and a good source of protein. Salmon provides all of the essential amino acids, making it a complete source of protein like other animal products such as poultry and milk.',
+    imgUrl: [`${CONFIG.assetsDir}/menu/homedish/Grilled_Salmon_With_Apple_Mirin_Sauce_31ecf175-a3a7-4f25-8766-358f5bfdf3da_480x480.webp`],
+  },
+  {
+    title: 'Nourishing and Beautifying Black Chicken Soup (人参黑鸡汤)',
+    subtitle: 'Ginseng black chicken is a popular soup in Chinese cuisine and traditional medicine. It helps to boost energy, strengthen your immune system, regulate blood sugar and support heart health.',
+    imgUrl: [`${CONFIG.assetsDir}/menu/homedish/nourishing_and_beautifying_black_chicken_soup_1543b537-c603-4dc5-a281-c56130428ff5_480x48.webp`],
+  },
+  {
+    title: 'Hakka Yellow Wine Chicken with Black Fungus (客家黄酒鸡)',
+    subtitle: 'This traditional dish is a favourite among Hakkas and Cantonese. Yellow wine chicken helps to improve blood circulation, keep the body warm, and speed up the recovery process.',
+    imgUrl: [`${CONFIG.assetsDir}/menu/homedish/Hakka_Yellow_Wine_Chicken_with_Black_Fungus_480x480.webp`],
+  },
+
 ];
 
 function ScrollableContent({ containerRoot }) {
@@ -142,16 +137,10 @@ function ScrollableContent({ containerRoot }) {
 
   const background = useTransform(
     scrollYProgress,
-    [0, 0.12, 0.28, 0.48, 0.58, 0.62, 0.72, 0.92],
+    [0, 1],
     [
-      `transparent`,
-      `linear-gradient(180deg, ${theme.palette.primary.light}, ${theme.palette.primary.dark})`,
-      `linear-gradient(180deg, ${primaryColorPresets.preset1.light}, ${primaryColorPresets.preset1.dark})`,
-      `linear-gradient(180deg, ${primaryColorPresets.preset2.light}, ${primaryColorPresets.preset2.dark})`,
-      `linear-gradient(180deg, ${primaryColorPresets.preset3.light}, ${primaryColorPresets.preset3.dark})`,
-      `linear-gradient(180deg, ${primaryColorPresets.preset4.light}, ${primaryColorPresets.preset4.dark})`,
-      `linear-gradient(180deg, ${primaryColorPresets.preset5.light}, ${primaryColorPresets.preset5.dark})`,
-      `linear-gradient(180deg, ${theme.palette.background.neutral}, ${theme.palette.background.neutral})`,
+      'linear-gradient(180deg, #FFF 0%, #FFF 100%)', // Start: all white
+      'linear-gradient(180deg, #FFF 0%, #FACAD5 100%)', // End: white to pink
     ]
   );
 
@@ -164,7 +153,7 @@ function ScrollableContent({ containerRoot }) {
   });
 
   return (
-    <ScrollRoot ref={containerRef} sx={{ height: scrollRect.scrollWidth, minHeight: '100vh' }}>
+    <ScrollRoot ref={containerRef} sx={{ minHeight: '100vh' }}>
       <ScrollContainer style={{ background }} data-scrolling={startScroll}>
         <ScrollContent
           ref={scrollRef}
@@ -215,16 +204,26 @@ const ScrollContent = styled(m.div)(({ theme }) => ({
 
 function Item({ item, sx, ...other }) {
   return (
-    <Box sx={[{ flexShrink: 0 }, ...(Array.isArray(sx) ? sx : [sx])]} {...other}>
-      <Box sx={{ mb: 6, gap: 2, display: 'flex' }}>
-        <Iconify width={28} icon={item.icon} sx={{ mt: '10px' }} />
-        <Stack spacing={2}>
-          <Typography variant="h3">{item.title}</Typography>
-          <Typography sx={{ color: 'text.secondary' }}>{item.subtitle}</Typography>
-        </Stack>
-      </Box>
-
-      <Box sx={{ display: 'flex', gap: { xs: 5, md: 8 } }}>
+    <Box
+      sx={[
+        {
+          flexShrink: 0,
+          maxWidth: { xs: 280, sm: 320, md: 400 }, // Responsive maxWidth
+          width: { xs: 240, sm: 280, md: 400 },    // Responsive width
+          mx: { xs: 'auto', md: 0 },               // Center on mobile
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+      {...other}
+    >
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' }, // Stack vertically on mobile
+          gap: { xs: 2, md: 8 },
+          alignItems: { xs: 'center', md: 'flex-start' },
+        }}
+      >
         {item.imgUrl.map((url) => (
           <Box
             key={url}
@@ -232,10 +231,13 @@ function Item({ item, sx, ...other }) {
               (theme) => ({
                 borderRadius: 2,
                 overflow: 'hidden',
-                boxShadow: `-40px 40px 80px 0px ${varAlpha(theme.vars.palette.grey['500Channel'], 0.16)}`,
+                boxShadow: `-20px 20px 40px 0px ${varAlpha(theme.vars.palette.grey['500Channel'], 0.16)}`,
                 ...theme.applyStyles('dark', {
-                  boxShadow: `-40px 40px 80px 0px ${varAlpha(theme.vars.palette.common.blackChannel, 0.16)}`,
+                  boxShadow: `-20px 20px 40px 0px ${varAlpha(theme.vars.palette.common.blackChannel, 0.16)}`,
                 }),
+                width: { xs: 200, sm: 240, md: 480 },
+                height: 'auto',
+                mx: { xs: 'auto', md: 0 },
               }),
             ]}
           >
@@ -244,17 +246,32 @@ function Item({ item, sx, ...other }) {
               alt={url}
               src={url}
               sx={{
-                width: {
-                  xs: 480,
-                  sm: 640,
-                  md: 800,
-                  lg: 1140,
-                  xl: 1280,
-                },
+                width: { xs: 200, sm: 240, md: 480 },
+                height: 'auto',
+                display: 'block',
+                mx: 'auto',
               }}
             />
           </Box>
         ))}
+      </Box>
+      <Box sx={{ my: { xs: 2, md: 4 }, gap: 2, display: 'flex' }}>
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Typography
+            variant="h6"
+            sx={{
+              wordBreak: 'break-word',
+              color: '',
+              fontSize: { xs: '1.1rem', md: '1.25rem' },
+              textAlign: { xs: 'center', md: 'left' },
+            }}
+          >
+            {item.title}
+          </Typography>
+          {/* <Typography variant="caption" sx={{ color: 'text.secondary', wordBreak: 'break-word' }}>
+            {item.subtitle}
+          </Typography> */}
+        </Stack>
       </Box>
     </Box>
   );

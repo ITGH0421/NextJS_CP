@@ -17,8 +17,6 @@ export function AboutView() {
 
       <AboutVision />
 
-      <AboutTeam />
-
       <AboutTestimonials />
     </>
   );

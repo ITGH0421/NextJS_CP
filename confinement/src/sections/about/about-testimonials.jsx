@@ -38,16 +38,14 @@ export function AboutTestimonials({ sx, ...other }) {
 
       <m.div variants={varFade('inUp')}>
         <Typography variant="h2" sx={{ my: 3, color: 'common.white' }}>
-          Who love <br />
-          my work
+          Who loved <br />
+          our Meals
         </Typography>
       </m.div>
 
       <m.div variants={varFade('inUp')}>
         <Typography sx={{ color: 'common.white' }}>
-          Our goal is to create a product and service that you’re satisfied with and use it every
-          day. This is why we’re constantly working on our services to make it better every day and
-          really listen to what our users has to say.
+          We bring convenience with our array of nourishing confinement dishes delivered right to your doorstep, allowing you the luxury of spending quality time with your newborn and family, as well as ensuring you get adequate rest for your postpartum recovery!
         </Typography>
       </m.div>
 
@@ -89,8 +87,8 @@ export function AboutTestimonials({ sx, ...other }) {
         (theme) => ({
           ...theme.mixins.bgGradient({
             images: [
-              `linear-gradient(0deg, ${varAlpha(theme.vars.palette.grey['900Channel'], 0.9)}, ${varAlpha(theme.vars.palette.grey['900Channel'], 0.9)})`,
-              `url(${CONFIG.assetsDir}/assets/images/about/testimonials.webp)`,
+              `linear-gradient(0deg, ${varAlpha(theme.vars.palette.grey['900Channel'], 0.7)}, ${varAlpha(theme.vars.palette.grey['900Channel'], 0.6)})`,
+              `url(${CONFIG.assetsDir}/assets/background/aboutus.png)`,
             ],
           }),
           overflow: 'hidden',
@@ -151,13 +149,10 @@ function TestimonialItem({ testimonial, sx, ...other }) {
     >
       <Iconify icon="mingcute:quote-left-fill" width={40} sx={{ opacity: 0.48 }} />
       <Typography variant="body2">{testimonial.content}</Typography>
-      <Rating value={testimonial.ratingNumber} readOnly size="small" />
       <Box sx={{ gap: 2, display: 'flex' }}>
-        <Avatar alt={testimonial.name} src={testimonial.avatarUrl} />
 
         <ListItemText
           primary={testimonial.name}
-          secondary={fDate(testimonial.postedDate)}
           primaryTypographyProps={{ typography: 'subtitle2', mb: 0.5 }}
           secondaryTypographyProps={{
             color: 'inherit',

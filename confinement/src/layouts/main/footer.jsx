@@ -19,22 +19,41 @@ import { Logo } from 'src/components/logo';
 
 const LINKS = [
   {
-    headline: 'Minimal',
+    headline: 'Quick Links',
     children: [
+      { name: 'Home', href: paths.about },
       { name: 'About us', href: paths.about },
-      { name: 'Contact us', href: paths.contact },
-      { name: 'FAQs', href: paths.faqs },
+      { name: 'View Weekly Menu', href: paths.about },
+      { name: 'Confinement Packages', href: paths.about },
+      { name: 'Baby Shower Celebration', href: paths.about },
+      { name: 'Articles', href: paths.about },
+      { name: 'Testimonials', href: paths.about },
+      { name: 'FAQs', href: paths.about },
     ],
-  },
-  {
-    headline: 'Legal',
-    children: [
-      { name: 'Terms and condition', href: '#' },
-      { name: 'Privacy policy', href: '#' },
-    ],
-  },
-  { headline: 'Contact', children: [{ name: 'support@minimals.cc', href: '#' }] },
+  }
 ];
+
+const INFO = [
+  {
+    headline: 'Information',
+    children: [
+      {
+        name: 'Hotline/Messenger Hours:',
+        info: [
+          {
+            1: 'Mon - Fri 9:00AM to 6:00PM',
+            2: 'Sat: 9:00AM to 12:30PM',
+            3: 'Sun, PH Closed'
+          },
+        ]
+      },
+      {
+        name: 'Please Note',
+        info: `For E.D.D selection/new orders/next day activation/meal postponement and etc, we would need 1 working day's notice (before 2PM) for delivery on weekdays or 2 working day's notice (before 2PM) for delivery on weekends and PH. Any orders, activations or changes after operating hours would require 2 working day's notice. Additional $20/trip for delivery to Sentosa. Do check with our team for menu schedules.`
+      }
+    ],
+  }
+]
 
 // ----------------------------------------------------------------------
 
@@ -58,6 +77,10 @@ export function Footer({ sx, layoutQuery = 'md', ...other }) {
       >
         <Logo />
 
+        {/* <Typography variant="h6" sx={{ mt: 2 }}>
+          Your Custom Footer Title
+        </Typography> */}
+
         <Grid
           container
           sx={[
@@ -77,8 +100,28 @@ export function Footer({ sx, layoutQuery = 'md', ...other }) {
                 [theme.breakpoints.up(layoutQuery)]: { mx: 'unset' },
               })}
             >
-              The starting point for your next project with Minimal UI Kit, built on the newest
-              version of Material-UI ©, ready to be customized to your style.
+              3015 Bedok North Street 5, Shimei East Kitchen, #04-21, Singapore 486350
+            </Typography>
+
+            <Typography
+              variant="body2"
+              sx={(theme) => ({
+                mx: 'auto',
+                maxWidth: 280,
+                [theme.breakpoints.up(layoutQuery)]: { mx: 'unset' },
+              })}
+            >
+              Phone: 6914 9900
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={(theme) => ({
+                mx: 'auto',
+                maxWidth: 280,
+                [theme.breakpoints.up(layoutQuery)]: { mx: 'unset' },
+              })}
+            >
+              Email: confinement@chillipadi.com.sg
             </Typography>
 
             <Box
@@ -92,10 +135,8 @@ export function Footer({ sx, layoutQuery = 'md', ...other }) {
             >
               {_socials.map((social) => (
                 <IconButton key={social.label}>
-                  {social.value === 'twitter' && <TwitterIcon />}
                   {social.value === 'facebook' && <FacebookIcon />}
                   {social.value === 'instagram' && <InstagramIcon />}
-                  {social.value === 'linkedin' && <LinkedinIcon />}
                 </IconButton>
               ))}
             </Box>
@@ -139,10 +180,45 @@ export function Footer({ sx, layoutQuery = 'md', ...other }) {
                   ))}
                 </Box>
               ))}
+              {INFO.map((list) => (
+                <Box
+                  key={list.headline}
+                  sx={(theme) => ({
+                    gap: 2,
+                    width: 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    flexDirection: 'column',
+                    [theme.breakpoints.up(layoutQuery)]: { alignItems: 'flex-start' },
+                  })}
+                >
+                  <Typography component="div" variant="overline">
+                    {list.headline}
+                  </Typography>
+
+                  {list.children.map((link) => (
+                    <Typography
+                      key={link.name}
+                      variant="body2"
+                      color="inherit"
+                      sx={{ mb: 1 }}
+                    >
+                      {link.name}
+                      {link.info &&
+                        (Array.isArray(link.info)
+                          ? Object.values(link.info[0]).map((item, idx) => (
+                            <span key={idx} style={{ display: 'block' }}>{item}</span>
+                          ))
+                          : <span style={{ display: 'block' }}>{link.info}</span>
+                        )
+                      }
+                    </Typography>
+                  ))}
+                </Box>
+              ))}
             </Box>
           </Grid>
         </Grid>
-
         <Typography variant="body2" sx={{ mt: 10 }}>
           © All rights reserved.
         </Typography>
