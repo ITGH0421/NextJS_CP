@@ -41,7 +41,10 @@ export function SectionTitle({
         component={m.h2}
         variant="h2"
         variants={slotProps?.title?.variants ?? varFade('inUp', { distance: 24 })}
-        sx={slotProps?.title?.sx}
+        sx={[
+          { color: 'primary.main' }, // <-- Add this line
+          slotProps?.title?.sx,
+        ]}
       >
         {`${title} `}
         <Box

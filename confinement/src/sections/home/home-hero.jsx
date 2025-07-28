@@ -4,13 +4,13 @@ import { Carousel, useCarousel, CarouselDotButtons } from 'src/components/carous
 
 
 export function HomeHero({ data }) {
-const carousel = useCarousel({ loop: true }, [Autoplay({ playOnInit: true, delay: 5000 })]);
+  const carousel = useCarousel({ loop: true }, [Autoplay({ playOnInit: true, delay: 5000 })]);
   return (
     <Box
       sx={{
         position: 'relative',
         width: '100%',
-        minHeight: { xs: 280, sm: 400, md: 480 }, // or '100vh' for fullscreen
+        minHeight: { xs: 100, sm: 100, md: 100 }, // or '100vh' for fullscreen
         overflow: 'hidden',
       }}
     >
@@ -35,9 +35,19 @@ const carousel = useCarousel({ loop: true }, [Autoplay({ playOnInit: true, delay
   )
 }
 
-function CarouselItem({ item}) {
+function CarouselItem({ item }) {
   return (
-    <Box sx={{ width: '100%', height: '100%', position: 'relative' }}>
+    <Box
+      sx={{
+        width: '100%',
+        height: { xs: 300, md: '100%' }, // adjust as needed
+        position: 'relative',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        overflow: 'hidden',
+      }}
+    >
       <Box
         component="img"
         alt={item.title}
@@ -46,6 +56,7 @@ function CarouselItem({ item}) {
           width: '100%',
           height: '100%',
           objectFit: 'cover',
+          objectPosition: { xs: 'center', md: '' },
         }}
       />
     </Box>

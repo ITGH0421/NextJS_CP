@@ -7,6 +7,7 @@ import Stack from '@mui/material/Stack';
 import SvgIcon from '@mui/material/SvgIcon';
 
 import { ScrollProgress, useScrollProgress } from 'src/components/animate/scroll-progress';
+import { SectionTitle } from '../components/section-title';
 
 import { HomeHero } from '../home-hero';
 import { HomeFAQs } from '../home-faqs';
@@ -20,7 +21,10 @@ import { HomeAdvertisement } from '../home-advertisement';
 import { HomeHugePackElements } from '../home-hugepack-elements';
 import { HomeHighlightFeatures } from '../home-highlight-features';
 
-import {_mock} from 'src/_mock';
+
+import { _mock } from 'src/_mock';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 const SLIDES = [
   {
@@ -53,33 +57,75 @@ export function HomeView() {
       <ScrollProgress
         variant="linear"
         progress={pageProgress.scrollYProgress}
-        sx={[(theme) => ({ position: 'fixed', zIndex: theme.zIndex.appBar + 1 })]}
+        sx={[(theme) => ({ position: 'fixed', zIndex: theme.zIndex.appBar + 1, top: 0, left: 0, width: '100%' })]}
       />
 
       <BackToTopButton isVisible={isVisible} onClick={onBackToTop} />
 
-      <HomeHero data= {SLIDES.slice(1, 4)}/>
+      <HomeHero data={SLIDES.slice(0, 3)} />
 
-      <Stack sx={{ position: 'relative', bgcolor: 'background.default' }}>
-        <HomeMinimal />
-
-        <HomeHugePackElements />
-
-        <HomeForDesigner />
-
-        <HomeHighlightFeatures />
-
-        <HomeIntegrations />
-
+      <Stack
+        sx={{
+          position: 'relative',
+          px: { xs: 1, sm: 2, md: 4 },
+          py: { xs: 2, sm: 4, md: 6 },
+        }}
+      >
         <HomePricing />
 
-        <HomeTestimonials />
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            py: { xs: 2, sm: 3 },
+            px: { xs: 2, sm: 4 },
+            my: { xs: 2, sm: 3 },
+            width: { xs: '100%', sm: '90%', md: '90%' },
+            mx: 'auto',
+            textAlign: 'center',
+          }}
+        >
+          <Typography
+            variant="h4"
+            component="div"
+            fontWeight="bold"
+            color="primary.main"
+            sx={{ fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' } }}
+          >
+            Trusted by mothers since 2011
+          </Typography>
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            sx={{ mt: 2, maxWidth: 600, mx: 'auto', fontSize: { xs: '1rem', sm: '1.1rem' } }}
+          >
+            Chilli Padi Confinement strives to assist new mothers transition into postpartum comfortably by delivering delicious meals which restore hormonal balance and increase the production of breastmilk.
+          </Typography>
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            sx={{ mt: 2, maxWidth: 600, mx: 'auto', fontSize: { xs: '1rem', sm: '1.1rem' } }}
+          >
+            Over the past decade, we have served our confinement meals to over thirty thousand new mothers. Thank you for allowing us to be a part of your confinement journey!
+          </Typography>
 
-        <HomeFAQs />
+          {/* <SectionTitle
+            title="Our Packages"
+            description="Chilli Padi Confinement food delivery offers a wide range of packages from 7 Days to 28 Days options"
+            sx={{ mb: 5, textAlign: 'center' }}
+          /> */}
+        </Box>
 
-        <HomeZoneUI />
-
-        <HomeAdvertisement />
+        {/* <HomeMinimal /> */}
+        {/* <HomeHugePackElements /> */}
+        {/* <HomeForDesigner /> */}
+        <HomeHighlightFeatures />
+        {/* <HomeIntegrations /> */}
+        {/* <HomeTestimonials /> */}
+        {/* <HomeFAQs /> */}
+        {/* <HomeZoneUI /> */}
+        {/* <HomeAdvertisement /> */}
       </Stack>
     </>
   );

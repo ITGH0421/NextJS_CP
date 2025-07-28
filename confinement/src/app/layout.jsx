@@ -44,6 +44,7 @@ export const viewport = {
 // ----------------------------------------------------------------------
 
 export const metadata = {
+  title: 'Chilli Padi Confinement',
   icons: [
     {
       rel: 'icon',

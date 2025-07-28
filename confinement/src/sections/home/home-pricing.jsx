@@ -24,15 +24,13 @@ import { FloatLine, FloatXIcon } from './components/svg-elements';
 // ----------------------------------------------------------------------
 
 export function HomePricing({ sx, ...other }) {
-  const tabs = useTabs('Standard');
+  const tabs = useTabs('Dual Meal');
 
   const renderDescription = () => (
     <SectionTitle
-      caption="plans"
-      title="Transparent"
-      txtGradient="pricing"
-      description="Choose from flexible pricing options designed to fit your business needs and budget with no hidden fees."
-      sx={{ mb: 8, textAlign: 'center' }}
+      title="Our Packages"
+      description="Chilli Padi Confinement food delivery offers a wide range of packages from 7 Days to 28 Days options"
+      sx={{ mb: 5, textAlign: 'center' }}
     />
   );
 
@@ -43,10 +41,10 @@ export function HomePricing({ sx, ...other }) {
           key={plan.license}
           plan={plan}
           sx={(theme) => ({
-            ...(plan.license === 'Plus' && {
+            ...(plan.license === 'Single Meal' && {
               [theme.breakpoints.down(1440)]: {
-                borderLeft: `dashed 1px ${varAlpha(theme.vars.palette.grey['500Channel'], 0.2)}`,
-                borderRight: `dashed 1px ${varAlpha(theme.vars.palette.grey['500Channel'], 0.2)}`,
+                borderLeft: `dashed 2px ${varAlpha(theme.vars.palette.grey['500Channel'], 0.2)}`,
+                borderRight: `dashed 2px ${varAlpha(theme.vars.palette.grey['500Channel'], 0.2)}`,
               },
             }),
           })}
@@ -56,7 +54,7 @@ export function HomePricing({ sx, ...other }) {
   );
 
   const renderContentMobile = () => (
-    <Stack spacing={5} alignItems="center" sx={{ display: { md: 'none' } }}>
+    <Stack spacing={2} alignItems="center" sx={{ display: { md: 'none' } }}>
       <Tabs
         value={tabs.value}
         onChange={tabs.onChange}
@@ -90,14 +88,12 @@ export function HomePricing({ sx, ...other }) {
   return (
     <Box
       component="section"
-      sx={[{ py: 10, position: 'relative' }, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={[{ py: 5, position: 'relative' }, ...(Array.isArray(sx) ? sx : [sx])]}
       {...other}
     >
       <MotionViewport>
         <FloatLine vertical sx={{ top: 0, left: 80 }} />
-
         <Container>{renderDescription()}</Container>
-
         <Box
           sx={(theme) => ({
             position: 'relative',
@@ -110,12 +106,32 @@ export function HomePricing({ sx, ...other }) {
           })}
         >
           <Container>{renderContentDesktop()}</Container>
-
           <FloatLine sx={{ top: 64, left: 0 }} />
           <FloatLine sx={{ bottom: 64, left: 0 }} />
         </Box>
-
         <Container>{renderContentMobile()}</Container>
+
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          align="center"
+          sx={{ mt: 1 }}
+        >
+          Book your confinement food delivery package with us now!
+        </Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 6 }}>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            href={paths.product.root}
+            component="a"
+            sx={{ minWidth: 240 }} // Added to make the button wider
+          >
+            Order Now
+          </Button>
+        </Box>
+
       </MotionViewport>
     </Box>
   );
@@ -135,9 +151,9 @@ const renderLines = () => (
 );
 
 function PlanCard({ plan, sx, ...other }) {
-  const standardLicense = plan.license === 'Standard';
-
-  const plusLicense = plan.license === 'Plus';
+  const DualMealPackage = plan.license === 'Dual Meal';
+  const SingleMealPackage = plan.license === 'Single Meal';
+  const TrialMealPackage = plan.license == 'Trial Meal'
 
   return (
     <MotionViewport>
@@ -146,17 +162,17 @@ function PlanCard({ plan, sx, ...other }) {
           () => ({
             px: 6,
             py: 8,
-            gap: 5,
+            gap: 3,
             display: 'flex',
             position: 'relative',
             flexDirection: 'column',
+
           }),
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
         {...other}
       >
-        {plusLicense && renderLines()}
-
+        {SingleMealPackage && renderLines()}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Stack flexGrow={1}>
             <m.div variants={varFade('inLeft', { distance: 24 })}>
@@ -173,72 +189,36 @@ function PlanCard({ plan, sx, ...other }) {
                   opacity: 0.24,
                   borderRadius: 1,
                   bgcolor: 'error.main',
-                  ...(standardLicense && { bgcolor: 'primary.main' }),
-                  ...(plusLicense && { bgcolor: 'secondary.main' }),
+                  ...(DualMealPackage && { bgcolor: 'primary.main' }),
+                  ...(SingleMealPackage && { bgcolor: 'secondary.main' }),
                 }}
               />
             </m.div>
           </Stack>
 
           <m.div variants={varFade('inLeft', { distance: 24 })}>
+            <Box component="span" sx={{ typography: 'h6' }}>
+              from
+            </Box>
             <Box component="span" sx={{ typography: 'h3' }}>
               ${plan.price}
             </Box>
           </m.div>
         </Box>
 
-        <Box sx={{ gap: 2, display: 'flex' }}>
-          {plan.icons.map((icon, index) => (
-            <Box
-              component={m.img}
-              variants={varFade('in')}
-              key={icon}
-              alt={icon}
-              src={icon}
-              sx={{
-                width: 24,
-                height: 24,
-                ...(standardLicense && [1, 2].includes(index) && { display: 'none' }),
-              }}
-            />
-          ))}
-          {standardLicense && (
-            <Box component={m.span} variants={varFade('in')} sx={{ ml: -1 }}>
-              (only)
-            </Box>
-          )}
-        </Box>
+        {/* Display plan.option based on plan type */}
+        <Typography variant="subtitle2" color="text.secondary">
+          {DualMealPackage && 'Lunch And Dinner'}
+          {SingleMealPackage && 'Lunch Or Dinner'}
+          {TrialMealPackage && 'Lunch Or Dinner'}
+        </Typography>
+
 
         <Stack spacing={2.5}>
-          {plan.commons.map((option) => (
-            <Box
-              key={option}
-              component={m.div}
-              variants={varFade('in')}
-              sx={{
-                gap: 1.5,
-                display: 'flex',
-                typography: 'body2',
-                alignItems: 'center',
-              }}
-            >
-              <Iconify width={16} icon="eva:checkmark-fill" />
-              {option}
-            </Box>
-          ))}
-
-          <m.div variants={varFade('inLeft', { distance: 24 })}>
-            <Divider sx={{ borderStyle: 'dashed' }} />
-          </m.div>
-
-          {plan.options.map((option, index) => {
-            const disabled =
-              (standardLicense && [1, 2, 3].includes(index)) ||
-              (plusLicense && [3].includes(index));
-
-            return (
+          {DualMealPackage && (
+            plan.dualMeal.map((dualMeal, idx) => (
               <Box
-                key={option}
+                key={dualMeal}
                 component={m.div}
                 variants={varFade('in')}
                 sx={{
@@ -246,32 +226,64 @@ function PlanCard({ plan, sx, ...other }) {
                   display: 'flex',
                   typography: 'body2',
                   alignItems: 'center',
-                  ...(disabled && { color: 'text.disabled', textDecoration: 'line-through' }),
+                  justifyContent: 'space-between',
                 }}
               >
-                <Iconify
-                  width={18}
-                  icon={disabled ? 'mingcute:close-line' : 'eva:checkmark-fill'}
-                />
-                {option}
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <Iconify width={16} icon="eva:arrow-right-fill" />
+                  {dualMeal}
+                </Box>
+                <Box sx={{ fontWeight: 600 }}>${plan.dualMealPrice[idx]}</Box>
               </Box>
-            );
-          })}
-        </Stack>
+            ))
+          )}
 
-        <m.div variants={varFade('inUp', { distance: 24 })}>
-          <Button
-            fullWidth
-            variant={plusLicense ? 'contained' : 'outlined'}
-            color="inherit"
-            size="large"
-            target="_blank"
-            rel="noopener"
-            href={paths.minimalStore}
-          >
-            Get started
-          </Button>
-        </m.div>
+          {SingleMealPackage && (
+            plan.singleMeal.map((singleMeal, idx) => (
+              <Box
+                key={singleMeal}
+                component={m.div}
+                variants={varFade('in')}
+                sx={{
+                  gap: 1.5,
+                  display: 'flex',
+                  typography: 'body2',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <Iconify width={16} icon="eva:arrow-right-fill" />
+                  {singleMeal}
+                </Box>
+                <Box sx={{ fontWeight: 600 }}>${plan.singleMealPrice[idx]}</Box>
+              </Box>
+            ))
+          )}
+
+          {TrialMealPackage && (
+            plan.trialMeal.map((trialMeal, idx) => (
+              <Box
+                key={trialMeal}
+                component={m.div}
+                variants={varFade('in')}
+                sx={{
+                  gap: 1.5,
+                  display: 'flex',
+                  typography: 'body2',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <Iconify width={16} icon="eva:arrow-right-fill" />
+                  {trialMeal}
+                </Box>
+                <Box sx={{ fontWeight: 600 }}>${plan.trialMealPrice[idx]}</Box>
+              </Box>
+            ))
+          )}
+        </Stack>
       </Box>
     </MotionViewport>
   );
@@ -280,20 +292,36 @@ function PlanCard({ plan, sx, ...other }) {
 // ----------------------------------------------------------------------
 
 const PLANS = Array.from({ length: 3 }, (_, index) => ({
-  license: ['Standard', 'Plus', 'Extended'][index],
-  price: [69, 129, 599][index],
-  commons: [
-    'One end products',
-    '12 months updates',
-    '6 months of support',
-    'One-time payments',
-    'Lifetime perpetual license.',
+  license: ['Dual Meal', 'Single Meal', 'Trial Meal'][index],
+  price: [498, 498, 38][index],
+  option: ['Lunch And Dinner', 'Lunch Or Dinner', 'Lunch Or Dinner'],
+  dualMeal: [
+    '28 Days',
+    '21 Days',
+    '14 Days',
+    '7  Days',
   ],
-  options: [
-    'JavaScript version',
-    'TypeScript version',
-    'Design resources (Figma)',
-    'Commercial applications',
+  dualMealPrice: [
+    1768,
+    1368,
+    968,
+    498
+  ],
+  singleMeal: [
+    '28 Days',
+    '21 Days',
+    '14 Days'
+  ],
+  singleMealPrice: [
+    968,
+    728,
+    498
+  ],
+  trialMeal: [
+    '1 Day'
+  ],
+  trialMealPrice: [
+    38
   ],
   icons: [
     `${CONFIG.assetsDir}/assets/icons/platforms/ic-js.svg`,

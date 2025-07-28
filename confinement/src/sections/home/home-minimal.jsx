@@ -31,9 +31,7 @@ export function HomeMinimal({ sx, ...other }) {
   const renderDescription = () => (
     <>
       <SectionTitle
-        caption="Visualizing Success"
-        title="What's in"
-        txtGradient="Minimal?"
+        title="Our Packages"
         sx={{ mb: { xs: 5, md: 8 }, textAlign: { xs: 'center', md: 'left' } }}
       />
 
@@ -45,12 +43,12 @@ export function HomeMinimal({ sx, ...other }) {
             key={item.title}
             sx={[{ gap: 3, display: 'flex' }]}
           >
-            <SvgColor src={item.icon} sx={{ width: 40, height: 40 }} />
+            <SvgColor src={item.icon} sx={{ width: 40, height: 40, color: 'primary.main' }} />
             <Stack spacing={1}>
-              <Typography variant="h5" component="h6">
+              <Typography variant="h5" component="h6" color="primary.main">
                 {item.title}
               </Typography>
-              <Typography sx={{ color: 'text.secondary' }}>{item.description}</Typography>
+              <Typography sx={{ color: 'primary.main' }}>{item.description}</Typography>
             </Stack>
           </Box>
         ))}

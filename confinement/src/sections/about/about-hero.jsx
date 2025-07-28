@@ -18,8 +18,8 @@ export function AboutHero({ sx, ...other }) {
         (theme) => ({
           ...theme.mixins.bgGradient({
             images: [
-              `url(${CONFIG.assetsDir}/assets/background/overlay.svg)`,
-              `url(${CONFIG.assetsDir}/assets/images/about/hero.webp)`,
+              `url(${CONFIG.assetsDir}/assets/background/overlay.png)`,
+              `url(${CONFIG.assetsDir}/aboutUs/cpc-dish.png)`,
             ],
           }),
           height: { md: 560 },
@@ -42,7 +42,7 @@ export function AboutHero({ sx, ...other }) {
           <AnimateText
             component="h1"
             variant="h1"
-            textContent={['Who', 'we are?']}
+            textContent={['Chilli Padi', 'Confinement']}
             variants={varFade('inRight', { distance: 24 })}
             sx={{
               color: 'common.white',
@@ -57,8 +57,7 @@ export function AboutHero({ sx, ...other }) {
               variant="h4"
               sx={{ mt: 3, color: 'common.white', fontWeight: 'fontWeightSemiBold' }}
             >
-              Let&apos;s work together and
-              <br /> make awesome site easily
+              Our Roots
             </Typography>
           </m.div>
         </Box>
